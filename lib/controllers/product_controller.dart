@@ -12,7 +12,7 @@ class ProductController extends GetxController {
   }
 
   fatchProduct() async {
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(Duration(seconds: 3));
     List<Product> serverResponse = [
       Product(
         id: 1,
@@ -38,9 +38,32 @@ class ProductController extends GetxController {
         productName: 'Jeans',
         favorite: false,
       ),
+      Product(
+        id: 4,
+        price: 899,
+        productDescription: 'some description about product',
+        productImage: 'assets/images/shoes.jpg',
+        productName: 'Shoes',
+        favorite: false,
+      ),
     ];
     products.assignAll(serverResponse);
     print(products);
    
+  }
+
+
+    RxList allproduct =[].obs;
+    RxInt totalproduct = 0.obs;
+
+    get getTotalproduct => allproduct.length;
+
+    void aadProduct( {required Product data} ){
+        allproduct.add(data);
+    }
+
+
+  void remuvdata( {required Product data} ){
+    allproduct.remove(data);
   }
 }
